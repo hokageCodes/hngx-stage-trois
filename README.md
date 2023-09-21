@@ -1,15 +1,9 @@
 # React Gallery Drag n Drop 
 
-![Banner](Home.png)
-
-## Table of Contents
-
-- [Features](#features)
+![Banner](/src/Home.png)
 
 
 ## Features
-
-List the key features of your project. What makes it unique or useful? Use bullet points for clarity.
 
 - Simple auth that accepts only ONE password and email - `user@example.com` && `1Password`. Only signed In users can access the app content
 - A display gallery in Grid format with Drag n Drop feature. User can also search based on tag names
@@ -18,8 +12,9 @@ List the key features of your project. What makes it unique or useful? Use bulle
 - Fully responsive
 
 ## Getting Started
-- git clone
-- cd project_name
+- git clone - `https://github.com/hokageCodes/hngx-stage-trois.git` 
+- cd `hngx-stage-trois`
+- Open in a code editor
 - npm install
 - npm start
 
