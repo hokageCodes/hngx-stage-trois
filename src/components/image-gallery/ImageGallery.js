@@ -37,7 +37,6 @@ const ImageGallery = () => {
 
   return (
     <>
-      
       <div className="search-bar">
           <input
             type="text"
@@ -48,7 +47,7 @@ const ImageGallery = () => {
           <button>Search</button>
           <div className='gallery-container'>
             <div className="image-gallery">
-              </div>
+            
               {filteredImages.map((image) => (
                 <DraggableImage
                   key={image.id}
@@ -58,6 +57,7 @@ const ImageGallery = () => {
                   onDrop={handleDrop}
                 />
               ))}
+            </div>
             </div>
         </div>
     </>
