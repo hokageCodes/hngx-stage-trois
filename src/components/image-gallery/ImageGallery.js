@@ -37,7 +37,8 @@ const ImageGallery = () => {
 
   return (
     <>
-        <div className="search-bar">
+      
+      <div className="search-bar">
           <input
             type="text"
             placeholder="Search by tag"
@@ -58,7 +59,7 @@ const ImageGallery = () => {
                 />
               ))}
             </div>
-          </div>
+        </div>
     </>
   );
 };
