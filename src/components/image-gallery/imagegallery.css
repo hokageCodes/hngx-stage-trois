@@ -65,6 +65,24 @@ img {
   height: 400px;
 }
 
+/* Update DraggableImage.css */
+/* Style the image while dragging */
+.image-card.dragging {
+  opacity: 0.6;
+  transform: scale(0.95);
+  transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+}
+
+/* Style the image while being dragged over */
+.image-card.drag-over {
+  border: 2px dashed #007bff;
+  transition: border 0.3s ease-in-out;
+}
+
+/* Add CSS animation for smoother transitions */
+.image-card {
+  transition: transform 0.3s ease-in-out, border 0.3s ease-in-out, opacity 0.3s ease-in-out;
+}
 
 /* Media query for responsiveness */
 @media screen and (max-width: 768px) {
@@ -83,8 +101,7 @@ img {
   }
 
   .draggable-image {
-    width: calc(100% - 20px); /* Full width with 10px left and right margin */
-    margin: 0 10px; /* Add left and right margin */
+    width: calc(100% - 10px); /* Full width with spacing */
   }
 }
 

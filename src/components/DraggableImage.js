@@ -1,34 +1,44 @@
 // DraggableImage.js
-import React, { useRef } from 'react';
+import React, { useState } from 'react';
 
 const DraggableImage = ({ image, onDragStart, onDragOver, onDrop }) => {
-  const imageRef = useRef(null);
+  const [isDragging, setIsDragging] = useState(false);
+  const [isDragOver, setIsDragOver] = useState(false);
 
   const handleDragStart = (e) => {
-    e.dataTransfer.setData('imageSrc', image.src);
-    imageRef.current.style.opacity = '0.5'; // Adjust the style when dragging starts
+    setIsDragging(true);
     onDragStart(e, image.src);
   };
 
   const handleDragOver = (e) => {
     e.preventDefault();
+    setIsDragOver(true);
     onDragOver(e, image.src);
+  };
+
+  const handleDragLeave = () => {
+    setIsDragOver(false);
   };
 
   const handleDrop = (e) => {
     e.preventDefault();
-    imageRef.current.style.opacity = '1'; // Reset the style when dropping
+    setIsDragging(false);
+    setIsDragOver(false);
     onDrop(e, image.src);
   };
 
+  const imageCardClasses = `image-card ${isDragging ? 'dragging' : ''} ${
+    isDragOver ? 'drag-over' : ''
+  }`;
+
   return (
     <div
-      draggable="true"
+      draggable
       onDragStart={handleDragStart}
       onDragOver={handleDragOver}
+      onDragLeave={handleDragLeave}
       onDrop={handleDrop}
-      className="image-card"
-      ref={imageRef}
+      className={imageCardClasses}
     >
       <img src={image.src} alt={image.id} />
     </div>
