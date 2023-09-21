@@ -4,46 +4,36 @@ const DraggableImage = ({ image, onDragStart, onDragOver, onDrop }) => {
   const [isDragging, setIsDragging] = useState(false);
   const [isDragOver, setIsDragOver] = useState(false);
 
+  const isDragAndDropSupported = 'draggable' in document.createElement('div');
+
   const handleDragStart = (e) => {
-    setIsDragging(true);
-    onDragStart(e, image.src);
+    if (isDragAndDropSupported) {
+      setIsDragging(true);
+      onDragStart(e, image.src);
+    }
   };
 
   const handleDragOver = (e) => {
-    e.preventDefault();
-    setIsDragOver(true);
-    onDragOver(e, image.src);
+    if (isDragAndDropSupported) {
+      e.preventDefault();
+      setIsDragOver(true);
+      onDragOver(e, image.src);
+    }
   };
 
   const handleDragLeave = () => {
-    setIsDragOver(false);
+    if (isDragAndDropSupported) {
+      setIsDragOver(false);
+    }
   };
 
   const handleDrop = (e) => {
-    e.preventDefault();
-    setIsDragging(false);
-    setIsDragOver(false);
-    onDrop(e, image.src);
-  };
-
-  const handleTouchStart = (e) => {
-    // Prevent default touch events (e.g., open image link)
-    e.preventDefault();
-    setIsDragging(true);
-    onDragStart(e, image.src);
-  };
-
-  const handleTouchMove = (e) => {
-    // Prevent scrolling while dragging on touch devices
-    e.preventDefault();
-  };
-
-  const handleTouchEnd = (e) => {
-    // Prevent default touch events (e.g., open image link)
-    e.preventDefault();
-    setIsDragging(false);
-    setIsDragOver(false);
-    onDrop(e, image.src);
+    if (isDragAndDropSupported) {
+      e.preventDefault();
+      setIsDragging(false);
+      setIsDragOver(false);
+      onDrop(e, image.src);
+    }
   };
 
   const imageCardClasses = `image-card ${isDragging ? 'dragging' : ''} ${
@@ -52,10 +42,7 @@ const DraggableImage = ({ image, onDragStart, onDragOver, onDrop }) => {
 
   return (
     <div
-      draggable
-      onTouchStart={handleTouchStart}
-      onTouchMove={handleTouchMove}
-      onTouchEnd={handleTouchEnd}
+      draggable={isDragAndDropSupported}
       onDragStart={handleDragStart}
       onDragOver={handleDragOver}
       onDragLeave={handleDragLeave}
