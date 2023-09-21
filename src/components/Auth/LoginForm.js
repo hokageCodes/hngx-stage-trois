@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import ImageGallery from '../image-gallery/ImageGallery';
 import './auth.css';
+import { css } from '@emotion/react'; // Import css from react-spinners
+import { RingLoader } from 'react-spinners'; // Import RingLoader from react-spinners
 
 const LoginForm = () => {
   const [email, setEmail] = useState('');
@@ -11,12 +13,13 @@ const LoginForm = () => {
 
   const handleLogin = () => {
     if (email === 'user@example.com' && password === '1Password') {
+      // Set loading to true after successful login
       setIsLoading(true);
 
       // Simulate loading for 2 seconds (adjust as needed)
       setTimeout(() => {
         setAuthenticated(true);
-        setIsLoading(false);
+        setIsLoading(false); // Turn off loading after delay
       }, 2000);
     } else {
       setError('Invalid email or password. Please try again.');
@@ -25,11 +28,19 @@ const LoginForm = () => {
 
   useEffect(() => {
     if (authenticated) {
+      // Redirect to the gallery after successful login
       setTimeout(() => {
+        // Redirect logic here (e.g., using React Router)
+        // For now, simply log a message
         console.log('Redirecting to the gallery...');
-      }, 3000);
+      }, 1000); // Redirect after 1 second (adjust as needed)
     }
   }, [authenticated]);
+
+  const override = css`
+    display: block;
+    margin: 0 auto;
+  `;
 
   return (
     <div className="login-form-container">
@@ -67,7 +78,11 @@ const LoginForm = () => {
               Login
             </button>
           </div>
-          {isLoading && <p>Loading...</p>} {/* Show loading message when isLoading is true */}
+          {isLoading && (
+            <div className="loader">
+              <RingLoader color={'#007bff'} loading={isLoading} css={override} size={100} />
+            </div>
+          )}
         </form>
       )}
     </div>
