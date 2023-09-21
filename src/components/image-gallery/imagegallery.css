@@ -47,8 +47,7 @@ input[type="text"] {
 
 /* Style the image inside each card */
 .image-card img {
-  width: 100%; /* Ensure the image takes the full width of its container */
-  max-width: 100%; /* Prevent images from exceeding their natural size */
+  width: 100%;
   height: auto;
   border-radius: 5px;
 }
@@ -98,7 +97,7 @@ input[type="text"] {
 
 .image-gallery {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); /* Adjust the minimum width and column count as needed */
+  grid-template-columns: repeat(3, 1fr); /* Three images in a row for desktop */
   gap: 20px;
   max-width: 1200px;
   margin: 0 auto;
@@ -107,13 +106,13 @@ input[type="text"] {
 /* Update for mobile */
 @media screen and (max-width: 768px) {
   .image-gallery {
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); /* Adjust for tablet screens */
+    grid-template-columns: repeat(2, 1fr); /* Two images in a row for Tabs */
   }
 }
 
 /* Additional update for smaller screens */
 @media screen and (max-width: 414px) {
   .image-gallery {
-    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr)); /* Adjust for smaller screens */
+    grid-template-columns: repeat(1, 1fr); /* Single column for smaller screens */
   }
 }
