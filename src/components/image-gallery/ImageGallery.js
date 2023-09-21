@@ -1,10 +1,12 @@
 // ImageGallery.js
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import DraggableImage from '../DraggableImage';
 import imageData from '../ImageList';
 import './imagegallery.css';
+import LoadingSpinner from '../Loading';
 
 const ImageGallery = () => {
+  const [isLoading, setIsLoading] = useState(true);
   const [images, setImages] = useState([...imageData]);
   const [searchQuery, setSearchQuery] = useState('');
 
@@ -15,6 +17,14 @@ const ImageGallery = () => {
   const handleDragOver = (e) => {
     e.preventDefault();
   };
+
+  // Simulate fetching images
+  useEffect(() => {
+    setTimeout(() => {
+      setIsLoading(false);
+    }, 2000); // Simulated 2-second loading delay
+  }, []);
+
 
   const handleDrop = (e, targetImageSrc) => {
     const sourceImageSrc = e.dataTransfer.getData('imageSrc');
@@ -44,22 +54,25 @@ const ImageGallery = () => {
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
           />
-          <button>Search</button>
+          <button className='gallery-search'>Search</button>
           <div className='gallery-container'>
-            <div className="image-gallery">
-            
-              {filteredImages.map((image) => (
-                <DraggableImage
-                  key={image.id}
-                  image={image}
-                  onDragStart={handleDragStart}
-                  onDragOver={handleDragOver}
-                  onDrop={handleDrop}
-                />
-              ))}
-            </div>
-            </div>
-        </div>
+        {isLoading ? (
+          <LoadingSpinner />
+        ) : (
+          <div className="image-gallery">
+            {filteredImages.map((image) => (
+              <DraggableImage
+                key={image.id}
+                image={image}
+                onDragStart={handleDragStart}
+                onDragOver={handleDragOver}
+                onDrop={handleDrop}
+              />
+            ))}
+          </div>
+        )}
+      </div>
+      </div>
     </>
   );
 };

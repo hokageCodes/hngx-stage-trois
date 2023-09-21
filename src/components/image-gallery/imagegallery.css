@@ -14,14 +14,14 @@ input[type="text"] {
   margin-right: 10px;
 }
 
-button {
+.gallery-search {
   padding: 10px 20px;
   background-color: #007bff;
   color: #fff;
   border: none;
   border-radius: 5px;
   cursor: pointer;
-  margin-right: 30px;
+  margin-left: -10px;
 }
 
 .gallery-container {
@@ -86,11 +86,20 @@ img {
 }
 
 @media screen and (max-width: 414px) {
+  h2 {
+    max-width: 300px;
+    text-align: center;
+    margin-left: 50px;
+  }
   .image-gallery {
     grid-template-columns: repeat(1, 1fr);
   }
 
   .draggable-image {
     width: calc(100% - 10px);
+  }
+  img {
+    width: 300px;
+    height: 300px;
   }
 }

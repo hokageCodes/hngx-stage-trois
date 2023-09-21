@@ -48,7 +48,7 @@ const LoginForm = () => {
           </div>
           {error && <p className="error">{error}</p>}
           <div className="form-group">
-            <button type="button" onClick={handleLogin}>
+            <button className='login-btn' type="button" onClick={handleLogin}>
               Login
             </button>
           </div>
