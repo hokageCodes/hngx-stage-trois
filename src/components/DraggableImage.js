@@ -1,4 +1,3 @@
-// DraggableImage.js
 import React, { useState } from 'react';
 
 const DraggableImage = ({ image, onDragStart, onDragOver, onDrop }) => {
@@ -27,6 +26,26 @@ const DraggableImage = ({ image, onDragStart, onDragOver, onDrop }) => {
     onDrop(e, image.src);
   };
 
+  const handleTouchStart = (e) => {
+    // Prevent default touch events (e.g., open image link)
+    e.preventDefault();
+    setIsDragging(true);
+    onDragStart(e, image.src);
+  };
+
+  const handleTouchMove = (e) => {
+    // Prevent scrolling while dragging on touch devices
+    e.preventDefault();
+  };
+
+  const handleTouchEnd = (e) => {
+    // Prevent default touch events (e.g., open image link)
+    e.preventDefault();
+    setIsDragging(false);
+    setIsDragOver(false);
+    onDrop(e, image.src);
+  };
+
   const imageCardClasses = `image-card ${isDragging ? 'dragging' : ''} ${
     isDragOver ? 'drag-over' : ''
   }`;
@@ -34,6 +53,9 @@ const DraggableImage = ({ image, onDragStart, onDragOver, onDrop }) => {
   return (
     <div
       draggable
+      onTouchStart={handleTouchStart}
+      onTouchMove={handleTouchMove}
+      onTouchEnd={handleTouchEnd}
       onDragStart={handleDragStart}
       onDragOver={handleDragOver}
       onDragLeave={handleDragLeave}
