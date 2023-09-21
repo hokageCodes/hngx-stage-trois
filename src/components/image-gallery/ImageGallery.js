@@ -2,8 +2,8 @@ import React, { useEffect, useState } from 'react';
 import DraggableImage from '../DraggableImage';
 import imageData from '../ImageList';
 import './imagegallery.css';
-import { css } from '@emotion/react'; // Import css from react-spinners
-import { RingLoader } from 'react-spinners'; // Import RingLoader from react-spinners
+import { css } from '@emotion/react';
+import { RingLoader } from 'react-spinners';
 
 const ImageGallery = () => {
   const [isLoading, setIsLoading] = useState(true);
@@ -50,6 +50,11 @@ const ImageGallery = () => {
     setNoResults(filteredImages.length === 0);
   }, [filteredImages]);
 
+  const handleLogout = () => {
+    window.location.href = '/login';
+  };
+  
+
   const override = css`
     display: block;
     margin: 0 auto;
@@ -64,7 +69,9 @@ const ImageGallery = () => {
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
         />
+        
         <button className='gallery-search' onClick={() => setNoResults(false)}>Search</button>
+        <button className='logout-btn' onClick={handleLogout}>Logout</button>
       </div>
       <div className='gallery-container'>
         {isLoading ? (

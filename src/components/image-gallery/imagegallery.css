@@ -103,6 +103,15 @@ input[type="text"] {
   margin: 0 auto;
 }
 
+.logout-btn {
+  padding: 10px 20px;
+  background-color: #ff0000; /* Change the background color to your desired color */
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-left: 10px; /* Adjust the margin as needed */
+}
 /* Update for mobile */
 @media screen and (max-width: 768px) {
   .image-gallery {
