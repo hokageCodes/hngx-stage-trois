@@ -36,25 +36,30 @@ const ImageGallery = () => {
   });
 
   return (
-    <div className="image-gallery">
-      <div className="search-bar">
-        <input
-          type="text"
-          placeholder="Search by tag"
-          value={searchQuery}
-          onChange={(e) => setSearchQuery(e.target.value)}
-        />
-      </div>
-      {filteredImages.map((image) => (
-        <DraggableImage
-          key={image.id}
-          image={image}
-          onDragStart={handleDragStart}
-          onDragOver={handleDragOver}
-          onDrop={handleDrop}
-        />
-      ))}
-    </div>
+    <>
+        <div className="search-bar">
+          <input
+            type="text"
+            placeholder="Search by tag"
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+          />
+          <button>Search</button>
+          <div className='gallery-container'>
+            <div className="image-gallery">
+              </div>
+              {filteredImages.map((image) => (
+                <DraggableImage
+                  key={image.id}
+                  image={image}
+                  onDragStart={handleDragStart}
+                  onDragOver={handleDragOver}
+                  onDrop={handleDrop}
+                />
+              ))}
+            </div>
+          </div>
+    </>
   );
 };
 
