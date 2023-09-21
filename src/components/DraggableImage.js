@@ -22,7 +22,7 @@ const DraggableImage = ({ image, onDragStart, onDragOver, onDrop }) => {
 
   const handleDrop = (e) => {
     e.preventDefault();
-    setIsDragging(false);
+    setIsDragging(false); // Move this line here
     setIsDragOver(false);
     onDrop(e, image.src);
   };

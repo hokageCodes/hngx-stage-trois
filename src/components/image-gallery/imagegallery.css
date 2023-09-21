@@ -1,10 +1,8 @@
-/* imagegallery.css */
-
-/* Style the search bar */
 .search-bar {
   display: flex;
   flex-direction: column;
-  text-align: center;
+  align-items: center;
+  gap: 20px;
   margin-bottom: 20px;
 }
 
@@ -23,25 +21,23 @@ button {
   border: none;
   border-radius: 5px;
   cursor: pointer;
+  margin-right: 30px;
 }
 
-/* Style the gallery container with flex layout */
 .gallery-container {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
 }
 
-/* Style the image gallery with a grid layout */
 .image-gallery {
   display: grid;
-  grid-template-columns: repeat(3, 1fr); /* 3 columns */
-  gap: 20px; /* Spacing between items */
-  max-width: 1200px; /* Limit the maximum width of the gallery */
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  max-width: 1200px;
   margin: 0 auto;
 }
 
-/* Style each image item with flex layout */
 .draggable-image {
   display: flex;
   flex-direction: column;
@@ -54,7 +50,6 @@ button {
   transition: border-color 0.3s ease-in-out;
 }
 
-/* Optional: Style the image tags or any other elements within DraggableImage */
 .draggable-image .image-tags {
   font-size: 14px;
   color: #555;
@@ -65,50 +60,37 @@ img {
   height: 400px;
 }
 
-/* Update DraggableImage.css */
-/* Style the image while dragging */
 .image-card.dragging {
   opacity: 0.6;
   transform: scale(0.95);
   transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
 }
 
-/* Style the image while being dragged over */
 .image-card.drag-over {
   border: 2px dashed #007bff;
   transition: border 0.3s ease-in-out;
 }
 
-/* Add CSS animation for smoother transitions */
 .image-card {
   transition: transform 0.3s ease-in-out, border 0.3s ease-in-out, opacity 0.3s ease-in-out;
 }
 
-/* Media query for responsiveness */
 @media screen and (max-width: 768px) {
   .image-gallery {
-    grid-template-columns: repeat(2, 1fr); /* 2 columns for screens <= 768px */
+    grid-template-columns: repeat(2, 1fr); 
   }
 
   .draggable-image {
-    width: calc(50% - 10px); /* 2 images per row with spacing */
+    width: calc(50% - 10px);
   }
 }
 
 @media screen and (max-width: 414px) {
   .image-gallery {
-    grid-template-columns: repeat(1, 1fr); /* 1 column for screens <= 414px */
+    grid-template-columns: repeat(1, 1fr);
   }
 
   .draggable-image {
-    width: calc(100% - 10px); /* Full width with spacing */
+    width: calc(100% - 10px);
   }
-}
-
-@media screen and (max-width: 412px) {
-  /* Adjust styles for screens <= 412px if needed */
-}
-
-@media screen and (max-width: 375px) {
-  /* Adjust styles for screens <= 375px if needed */
 }
