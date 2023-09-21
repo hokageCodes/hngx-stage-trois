@@ -87,9 +87,8 @@ img {
 
 @media screen and (max-width: 414px) {
   h2 {
-    max-width: 300px;
+    max-width: 400px;
     text-align: center;
-    margin-left: 50px;
   }
   .image-gallery {
     grid-template-columns: repeat(1, 1fr);
