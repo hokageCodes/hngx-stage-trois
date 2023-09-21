@@ -1,0 +1,71 @@
+/* Add this to your imageGallery.css */
+
+/* Style the search bar */
+.search-bar {
+  margin-bottom: 16px;
+}
+
+.search-bar input[type="text"] {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 16px;
+}
+
+/* Style the search button (if applicable) */
+.search-bar button {
+  padding: 8px 16px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.search-bar button:hover {
+  background-color: #0056b3;
+}
+
+/* Style the input on focus (optional) */
+.search-bar input[type="text"]:focus {
+  outline: none;
+  border-color: #007bff;
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+
+.image-gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); /* Masonry grid layout */
+  gap: 16px; /* Gap between grid items */
+}
+
+.image-card {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+  transition: transform 0.2s ease-in-out; /* Add a smooth transform transition on hover */
+  cursor: grab; /* Change cursor on hover for dragging */
+}
+
+.image-card:active {
+  cursor: grabbing; /* Change cursor when dragging */
+}
+
+.image-card.dragging {
+  cursor: grabbing; /* Change cursor when dragging */
+}
+
+.image-card img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.image-card.dragged {
+  opacity: 0.6;
+  transform: scale(0.9);
+  transition: opacity 0.3s, transform 0.3s;
+}

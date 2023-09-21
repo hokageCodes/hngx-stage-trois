@@ -1,23 +1,29 @@
-import logo from './logo.svg';
+import React, { useState } from 'react';
+import LoginForm from './components/Auth/LoginForm';
+import ImageGallery from './components/image-gallery/ImageGallery';
 import './App.css';
 
 function App() {
+  const [authenticated, setAuthenticated] = useState(false);
+
+  const handleAuthentication = () => {
+    setAuthenticated(true);
+  };
+
+  const handleLogout = () => {
+    setAuthenticated(false);
+  };
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      {authenticated ? (
+        <div>
+          <button onClick={handleLogout}>Logout</button>
+          <ImageGallery />
+        </div>
+      ) : (
+        <LoginForm onAuthenticate={handleAuthentication} />
+      )}
     </div>
   );
 }
