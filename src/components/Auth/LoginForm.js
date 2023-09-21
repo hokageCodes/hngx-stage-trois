@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import ImageGallery from '../image-gallery/ImageGallery';
 import './auth.css';
 
@@ -7,14 +7,29 @@ const LoginForm = () => {
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const [authenticated, setAuthenticated] = useState(false);
+  const [isLoading, setIsLoading] = useState(false); // Added loading state
 
   const handleLogin = () => {
     if (email === 'user@example.com' && password === '1Password') {
-      setAuthenticated(true);
+      setIsLoading(true);
+
+      // Simulate loading for 2 seconds (adjust as needed)
+      setTimeout(() => {
+        setAuthenticated(true);
+        setIsLoading(false);
+      }, 2000);
     } else {
       setError('Invalid email or password. Please try again.');
     }
   };
+
+  useEffect(() => {
+    if (authenticated) {
+      setTimeout(() => {
+        console.log('Redirecting to the gallery...');
+      }, 3000);
+    }
+  }, [authenticated]);
 
   return (
     <div className="login-form-container">
@@ -52,6 +67,7 @@ const LoginForm = () => {
               Login
             </button>
           </div>
+          {isLoading && <p>Loading...</p>} {/* Show loading message when isLoading is true */}
         </form>
       )}
     </div>

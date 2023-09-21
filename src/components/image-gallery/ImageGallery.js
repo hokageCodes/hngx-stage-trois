@@ -2,7 +2,8 @@ import React, { useEffect, useState } from 'react';
 import DraggableImage from '../DraggableImage';
 import imageData from '../ImageList';
 import './imagegallery.css';
-import LoadingSpinner from '../Loading';
+import { css } from '@emotion/react'; // Import css from react-spinners
+import { RingLoader } from 'react-spinners'; // Import RingLoader from react-spinners
 
 const ImageGallery = () => {
   const [isLoading, setIsLoading] = useState(true);
@@ -22,7 +23,7 @@ const ImageGallery = () => {
   useEffect(() => {
     setTimeout(() => {
       setIsLoading(false);
-    }, 2000);
+    }, 3000);
   }, []);
 
   const handleDrop = (e, targetImageSrc) => {
@@ -49,6 +50,11 @@ const ImageGallery = () => {
     setNoResults(filteredImages.length === 0);
   }, [filteredImages]);
 
+  const override = css`
+    display: block;
+    margin: 0 auto;
+  `;
+
   return (
     <>
       <div className="search-bar">
@@ -62,7 +68,9 @@ const ImageGallery = () => {
       </div>
       <div className='gallery-container'>
         {isLoading ? (
-          <LoadingSpinner />
+          <div className="loader">
+            <RingLoader color={'#007bff'} loading={isLoading} css={override} size={100} />
+          </div>
         ) : (
           <div className="image-gallery">
             {noResults ? (

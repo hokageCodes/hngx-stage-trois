@@ -106,7 +106,7 @@ input[type="text"] {
 /* Update for mobile */
 @media screen and (max-width: 768px) {
   .image-gallery {
-    grid-template-columns: repeat(2, 1fr); /* Two images in a row for mobile */
+    grid-template-columns: repeat(2, 1fr); /* Two images in a row for Tabs */
   }
 }
 
