@@ -24,4 +24,4 @@ List the key features of your project. What makes it unique or useful? Use bulle
 - npm start
 
 ## Live Link
-[Live Link](https://vercel.com/kagedevio/hngx-stage-trois)
+[Live Link](https://hngx-stage-trois.vercel.app/)
