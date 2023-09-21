@@ -22,7 +22,7 @@ const DraggableImage = ({ image, onDragStart, onDragOver, onDrop }) => {
 
   const handleDrop = (e) => {
     e.preventDefault();
-    setIsDragging(false); // Move this line here
+    setIsDragging(false);
     setIsDragOver(false);
     onDrop(e, image.src);
   };
@@ -41,6 +41,11 @@ const DraggableImage = ({ image, onDragStart, onDragOver, onDrop }) => {
       className={imageCardClasses}
     >
       <img src={image.src} alt={image.id} />
+      <div className="image-tags">
+        {image.tags.map((tag, index) => (
+          <span key={index}>{tag}</span>
+        ))}
+      </div>
     </div>
   );
 };

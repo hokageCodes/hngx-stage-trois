@@ -9,6 +9,7 @@ const ImageGallery = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [images, setImages] = useState([...imageData]);
   const [searchQuery, setSearchQuery] = useState('');
+  const [noResults, setNoResults] = useState(false); // New state variable
 
   const handleDragStart = (e, sourceImageSrc) => {
     e.dataTransfer.setData('imageSrc', sourceImageSrc);
@@ -24,7 +25,6 @@ const ImageGallery = () => {
       setIsLoading(false);
     }, 2000); // Simulated 2-second loading delay
   }, []);
-
 
   const handleDrop = (e, targetImageSrc) => {
     const sourceImageSrc = e.dataTransfer.getData('imageSrc');
@@ -45,33 +45,42 @@ const ImageGallery = () => {
     return image.tags.some((tag) => tag.toLowerCase().includes(searchQuery.toLowerCase()));
   });
 
+  // Check if no results were found
+  useEffect(() => {
+    setNoResults(filteredImages.length === 0);
+  }, [filteredImages]);
+
   return (
     <>
       <div className="search-bar">
-          <input
-            type="text"
-            placeholder="Search by tag"
-            value={searchQuery}
-            onChange={(e) => setSearchQuery(e.target.value)}
-          />
-          <button className='gallery-search'>Search</button>
-          <div className='gallery-container'>
+        <input
+          type="text"
+          placeholder="Search by tag"
+          value={searchQuery}
+          onChange={(e) => setSearchQuery(e.target.value)}
+        />
+        <button className='gallery-search'>Search</button>
+      </div>
+      <div className='gallery-container'>
         {isLoading ? (
           <LoadingSpinner />
         ) : (
           <div className="image-gallery">
-            {filteredImages.map((image) => (
-              <DraggableImage
-                key={image.id}
-                image={image}
-                onDragStart={handleDragStart}
-                onDragOver={handleDragOver}
-                onDrop={handleDrop}
-              />
-            ))}
+            {noResults ? (
+              <p>No results found for '{searchQuery}'.</p>
+            ) : (
+              filteredImages.map((image) => (
+                <DraggableImage
+                  key={image.id}
+                  image={image}
+                  onDragStart={handleDragStart}
+                  onDragOver={handleDragOver}
+                  onDrop={handleDrop}
+                />
+              ))
+            )}
           </div>
         )}
-      </div>
       </div>
     </>
   );

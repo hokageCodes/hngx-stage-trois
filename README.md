@@ -2,7 +2,6 @@
 
 ![Banner](/src/Home.png)
 
-
 ## Features
 
 - Simple auth that accepts only ONE password and email - `user@example.com` && `1Password`. Only signed In users can access the app content
