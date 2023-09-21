@@ -1,4 +1,3 @@
-// ImageGallery.js
 import React, { useEffect, useState } from 'react';
 import DraggableImage from '../DraggableImage';
 import imageData from '../ImageList';
@@ -9,7 +8,7 @@ const ImageGallery = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [images, setImages] = useState([...imageData]);
   const [searchQuery, setSearchQuery] = useState('');
-  const [noResults, setNoResults] = useState(false); // New state variable
+  const [noResults, setNoResults] = useState(false);
 
   const handleDragStart = (e, sourceImageSrc) => {
     e.dataTransfer.setData('imageSrc', sourceImageSrc);
@@ -23,7 +22,7 @@ const ImageGallery = () => {
   useEffect(() => {
     setTimeout(() => {
       setIsLoading(false);
-    }, 2000); // Simulated 2-second loading delay
+    }, 2000);
   }, []);
 
   const handleDrop = (e, targetImageSrc) => {
@@ -59,7 +58,7 @@ const ImageGallery = () => {
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
         />
-        <button className='gallery-search'>Search</button>
+        <button className='gallery-search' onClick={() => setNoResults(false)}>Search</button>
       </div>
       <div className='gallery-container'>
         {isLoading ? (

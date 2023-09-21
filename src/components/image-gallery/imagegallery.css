@@ -1,3 +1,7 @@
+/* Updated CSS (imagegallery.css) */
+
+/* Remove unnecessary comments and cascade styles */
+
 .search-bar {
   display: flex;
   flex-direction: column;
@@ -8,7 +12,8 @@
 
 input[type="text"] {
   padding: 10px;
-  width: 200px;
+  width: 100%;
+  max-width: 300px;
   border: 1px solid #ccc;
   border-radius: 5px;
   margin-right: 10px;
@@ -21,7 +26,6 @@ input[type="text"] {
   border: none;
   border-radius: 5px;
   cursor: pointer;
-  margin-left: -10px;
 }
 
 .gallery-container {
@@ -32,25 +36,21 @@ input[type="text"] {
 
 /* Style each image card container */
 .image-card {
-  position: relative; /* Needed for positioning the tags */
+  position: relative;
   draggable: true;
   margin: 10px;
   border: 1px solid #ccc;
   border-radius: 5px;
   cursor: grab;
-  transition: border-color 0.3s ease-in-out;
+  transition: border-color 0.3s ease-in-out, transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
 }
 
 /* Style the image inside each card */
 .image-card img {
   width: 100%;
   height: auto;
-  border-radius: 5px 5px 0 0; /* Rounded corners for the top */
+  border-radius: 5px;
 }
-
-/* Update imagegallery.css for Image Tags */
-
-/* Update imagegallery.css for Image Tags */
 
 /* Style the image tags */
 .image-tags {
@@ -63,7 +63,7 @@ input[type="text"] {
   color: #fff;
   font-size: 12px;
   text-align: center;
-  border-radius: 0 0 5px 5px; /* Rounded corners for the bottom */
+  border-radius: 0 0 5px 5px;
 }
 
 /* Style the tags within the image card */
@@ -71,84 +71,48 @@ input[type="text"] {
   width: 100px;
   height: 20px;
   display: inline-block;
-  margin: 2px 5px; /* Adjust margin as needed */
+  margin: 2px 5px;
   padding: 2px 5px;
   background-color: #007bff;
   color: #fff;
-  font-size: 16px; /* Adjust font size as needed */
+  font-size: 16px;
   border-radius: 3px;
 }
 
+/* Style for dragging */
+.image-card.dragging {
+  opacity: 0.6;
+  transform: scale(0.95);
+}
+
+/* Style for when dragging over */
+.image-card.drag-over {
+  border: 2px dashed #007bff;
+}
+
+/* Style for when dropped */
+.image-card.dropped {
+  background-color: #f0f0f0; /* Change the background color when an image is dropped */
+}
 
 .image-gallery {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(3, 1fr); /* Three images in a row for desktop */
   gap: 20px;
   max-width: 1200px;
   margin: 0 auto;
 }
 
-.draggable-image {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: flex-start;
-  border: 1px solid #ccc;
-  padding: 10px;
-  border-radius: 5px;
-  cursor: grab;
-  transition: border-color 0.3s ease-in-out;
-}
-
-.draggable-image .image-tags {
-  font-size: 14px;
-  color: #555;
-}
-
-img {
-  width: 400px;
-  height: 400px;
-}
-
-.image-card.dragging {
-  opacity: 0.6;
-  transform: scale(0.95);
-  transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
-}
-
-.image-card.drag-over {
-  border: 2px dashed #007bff;
-  transition: border 0.3s ease-in-out;
-}
-
-.image-card {
-  transition: transform 0.3s ease-in-out, border 0.3s ease-in-out, opacity 0.3s ease-in-out;
-}
-
+/* Update for mobile */
 @media screen and (max-width: 768px) {
   .image-gallery {
-    grid-template-columns: repeat(2, 1fr); 
-  }
-
-  .draggable-image {
-    width: calc(50% - 10px);
+    grid-template-columns: repeat(2, 1fr); /* Two images in a row for mobile */
   }
 }
 
+/* Additional update for smaller screens */
 @media screen and (max-width: 414px) {
-  h2 {
-    max-width: 400px;
-    text-align: center;
-  }
   .image-gallery {
-    grid-template-columns: repeat(1, 1fr);
-  }
-
-  .draggable-image {
-    width: calc(100% - 10px);
-  }
-  img {
-    width: 300px;
-    height: 300px;
+    grid-template-columns: repeat(1, 1fr); /* Single column for smaller screens */
   }
 }
